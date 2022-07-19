@@ -1,0 +1,31 @@
+#include <WiFi.h>
+char ssid[]="iot lab";
+char password[]="12345678";
+IPAddress ip;
+IPAddress gateway;
+void setup()
+{
+ Serial.begin(115200); 
+ Serial.print("Attempting to connect to Network named: ");
+ Serial.println(ssid);
+ WiFi.begin(ssid, password);
+ while ( WiFi.status() != WL_CONNECTED) 
+ {
+ Serial.print(".");
+ delay(300);
+ }
+ Serial.println("\nYou're connected to the network");
+ while (WiFi.localIP() == INADDR_NONE) {
+ Serial.print(".");
+ delay(300);
+ }
+ ip=WiFi.localIP();
+ Serial.println(ip);
+ gateway=WiFi.gatewayIP();
+ Serial.println("GATEWAY IP:");
+ Serial.println(gateway);
+}
+void loop()
+{
+
+}
