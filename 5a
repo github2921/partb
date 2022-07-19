@@ -1,8 +1,7 @@
 #include "Ubidots.h"
 const char* UBIDOTS_TOKEN = " YOUR_TOKEN ";
 const char* WIFI_SSID = " Replace_With_Your_Ssid ";
-const char* WIFI_PASS = " Replace_With_Your_password "
-password
+const char* WIFI_PASS = " Replace_With_Your_password ";
 Ubidots ubidots(UBIDOTS_TOKEN, UBI_HTTP);
 void setup() {
  Serial.begin(115200);
