@@ -1,0 +1,20 @@
+#include "Ubidots.h"
+const char* UBIDOTS_TOKEN = " YOUR_TOKEN ";
+const char* WIFI_SSID = "_Your_SSID";
+const char* WIFI_PASS = "Your_Password";
+const char* DEVICE_LABEL_TO_RETRIEVE_VALUES_FROM = " your device label "; 
+const char* VARIABLE_LABEL_TO_RETRIEVE_VALUES_FROM = " your variable "; 
+Ubidots ubidots(UBIDOTS_TOKEN, UBI_HTTP);
+void setup() {
+ Serial.begin(115200);
+ ubidots.wifiConnect(WIFI_SSID, WIFI_PASS);
+}
+void loop() {
+ float value = ubidots.get(DEVICE_LABEL_TO_RETRIEVE_VALUES_FROM, 
+VARIABLE_LABEL_TO_RETRIEVE_VALUES_FROM);
+ if (value != ERROR_VALUE) {
+ Serial.print("Value:");
+ Serial.println(value);
+ }
+ delay(5000);
+}
