@@ -1,0 +1,20 @@
+#include "Ubidots.h"
+const char* UBIDOTS_TOKEN = " YOUR_TOKEN ";
+const char* WIFI_SSID = " Replace_With_Your_Ssid ";
+const char* WIFI_PASS = " Replace_With_Your_password "
+password
+Ubidots ubidots(UBIDOTS_TOKEN, UBI_HTTP);
+void setup() {
+ Serial.begin(115200);
+ ubidots.wifiConnect(WIFI_SSID, WIFI_PASS);
+}
+void loop() {
+ float value1 = random(0, 9) * 10;
+ ubidots.add("counter", value1);
+ bool bufferSent = false;
+ bufferSent = ubidots.send();
+ if (bufferSent) {
+ Serial.println("Values sent by the device");
+ }
+ delay(5000);
+}
